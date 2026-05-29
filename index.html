@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hernán Vincench — Barbero en casa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --negro: #0a0a0a;
+      --gris: #141414;
+      --gris2: #1e1e1e;
+      --verde: #00e676;
+      --verde-oscuro: #00c160;
+      --blanco: #f0f0f0;
+      --gris-texto: #888;
+    }
+
+    body {
+      background: var(--negro);
+      color: var(--blanco);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--blanco);
+    }
+
+    .nav-logo span { color: var(--verde); }
+
+    .nav-cta {
+      background: var(--verde);
+      color: var(--negro);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--verde-oscuro); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      right: -2rem;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(8rem, 20vw, 18rem);
+      color: #fff;
+      opacity: 0.03;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--verde);
+      color: var(--negro);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      margin-bottom: 2rem;
+      width: fit-content;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--blanco);
+    }
+
+    .hero h1 .verde { color: var(--verde); }
+
+    .hero-sub {
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      color: var(--gris-texto);
+      max-width: 420px;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--verde);
+      color: var(--negro);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--verde-oscuro); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: 1px solid #333;
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--verde); color: var(--verde); }
+
+    /* STRIP */
+    .strip {
+      background: var(--verde);
+      padding: 0.8rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .strip-inner {
+      display: inline-flex;
+      gap: 3rem;
+      animation: scroll 18s linear infinite;
+    }
+
+    .strip span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--negro);
+      letter-spacing: 0.15em;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* SERVICIOS */
+    .servicios {
+      padding: 6rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--verde);
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .servicio-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: var(--gris);
+      border-left: 3px solid var(--verde);
+      margin-bottom: 1rem;
+      transition: background 0.2s;
+    }
+
+    .servicio-card:hover { background: var(--gris2); }
+
+    .servicio-nombre {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      color: var(--blanco);
+    }
+
+    .servicio-desc {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+      margin-top: 0.3rem;
+    }
+
+    .servicio-precio {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--verde);
+      white-space: nowrap;
+      margin-left: 2rem;
+    }
+
+    /* RESERVAS */
+    .reservas {
+      background: var(--gris);
+      padding: 6rem 2.5rem;
+    }
+
+    .reservas-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .reservas p.sub {
+      color: var(--gris-texto);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    #cal-embed {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* UBICACIÓN */
+    .ubicacion {
+      padding: 6rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .ubicacion-box {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--gris);
+      padding: 2rem;
+      border-left: 3px solid var(--verde);
+      margin-top: 2rem;
+    }
+
+    .ubicacion-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .ubicacion-texto strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--blanco);
+      margin-bottom: 0.2rem;
+    }
+
+    .ubicacion-texto span {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      border-top: 1px solid #1a1a1a;
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #444;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: #333;
+      letter-spacing: 0.1em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .hero { padding: 7rem 1.2rem 3rem; }
+      .servicios, .ubicacion { padding: 4rem 1.2rem; }
+      .reservas { padding: 4rem 1.2rem; }
+      .servicio-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .servicio-precio { margin-left: 0; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">H<span>.</span>VINCENCH</div>
+    <a href="#reservas" class="nav-cta">Reservar</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text">BARBER</div>
+    <div class="hero-tag">Barbero · Pontevedra</div>
+    <h1>HERNÁN<br><span class="verde">VINCENCH</span></h1>
+    <p class="hero-sub">Cortes a domicilio con acabado profesional. Sin esperas, sin complicaciones. Reserva tu hueco en segundos.</p>
+    <div class="hero-btns">
+      <a href="#reservas" class="btn-primary">Pide tu cita</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </section>
+
+  <!-- STRIP ANIMADO -->
+  <div class="strip">
+    <div class="strip-inner">
+      <span>CORTE A DOMICILIO</span>
+      <span>✂</span>
+      <span>PONTEVEDRA</span>
+      <span>✂</span>
+      <span>RESERVA ONLINE</span>
+      <span>✂</span>
+      <span>SIN ESPERAS</span>
+      <span>✂</span>
+      <span>CORTE A DOMICILIO</span>
+      <span>✂</span>
+      <span>PONTEVEDRA</span>
+      <span>✂</span>
+      <span>RESERVA ONLINE</span>
+      <span>✂</span>
+      <span>SIN ESPERAS</span>
+      <span>✂</span>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">SERVICIOS</div>
+    </div>
+
+    <div class="servicio-card">
+      <div>
+        <div class="servicio-nombre">Corte clásico</div>
+        <div class="servicio-desc">Degradados, perfilado, tijera y máquina — el corte que te pidas, con acabado limpio</div>
+      </div>
+      <div class="servicio-precio">10€</div>
+    </div>
+
+  </section>
+
+  <!-- RESERVAS -->
+  <section class="reservas" id="reservas">
+    <div class="reservas-inner">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <div class="section-title">RESERVA TU CITA</div>
+      </div>
+      <p class="sub">Elige el día y la hora. Confirmación por email al instante.</p>
+
+      <div id="cal-embed"></div>
+      <script type="text/javascript">
+        (function (C, A, L) {
+          let p = function (a, ar) { a.q.push(ar); };
+          let d = C.document;
+          C.Cal = C.Cal || function () {
+            let cal = C.Cal; let ar = arguments;
+            if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+            if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, [L, namespace, ar[2]]); } else p(cal, ar); return; }
+            p(cal, ar);
+          };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", { origin: "https://cal.com" });
+        Cal("inline", {
+          elementOrSelector: "#cal-embed",
+          calLink: "hernan.vincench/corte-pelo",
+          layout: "month_view"
+        });
+        Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      </script>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="ubicacion">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">DÓNDE ESTOY</div>
+    </div>
+
+    <div class="ubicacion-box">
+      <div class="ubicacion-icon">📍</div>
+      <div class="ubicacion-texto">
+        <strong>EST. Puxeiros-Mos 13, 36417 · Pontevedra</strong>
+        <span>Trabajo desde casa — te indico los detalles al confirmar la cita</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">H.VINCENCH</div>
+    <div>© 2026 Hernán Vincench · Barbero en casa · Pontevedra</div>
+  </footer>
+
+</body>
+</html>
