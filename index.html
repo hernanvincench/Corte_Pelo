@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hernán Vincench — Barbería en casa</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --negro: #0f0f0f;
+      --gris-oscuro: #1a1a1a;
+      --gris-medio: #2a2a2a;
+      --dorado: #c9a84c;
+      --dorado-claro: #e8c96a;
+      --blanco: #f5f5f5;
+      --gris-texto: #aaaaaa;
+    }
+
+    body {
+      background-color: var(--negro);
+      color: var(--blanco);
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(160deg, #0f0f0f 60%, #1a1408 100%);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '✂';
+      font-size: 6rem;
+      opacity: 0.06;
+      position: absolute;
+      top: 10%;
+      right: 8%;
+      transform: rotate(-30deg);
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      color: var(--blanco);
+      line-height: 1.1;
+    }
+
+    .hero h1 span {
+      color: var(--dorado);
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      color: var(--gris-texto);
+      max-width: 480px;
+    }
+
+    .btn-reservar {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 1rem 2.5rem;
+      background-color: var(--dorado);
+      color: var(--negro);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: sans-serif;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .btn-reservar:hover {
+      background-color: var(--dorado-claro);
+    }
+
+    /* SECCIÓN SERVICIOS */
+    .servicios {
+      padding: 5rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .seccion-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      font-family: sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .servicios h2 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 3rem;
+      color: var(--blanco);
+    }
+
+    .servicio-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .servicio-item:first-of-type {
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .servicio-nombre {
+      font-size: 1.1rem;
+      color: var(--blanco);
+    }
+
+    .servicio-desc {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+      margin-top: 0.2rem;
+      font-family: sans-serif;
+    }
+
+    .servicio-precio {
+      font-size: 1.3rem;
+      color: var(--dorado);
+      font-family: sans-serif;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: 2rem;
+    }
+
+    /* SECCIÓN RESERVAS */
+    .reservas {
+      background-color: var(--gris-oscuro);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .reservas h2 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 0.8rem;
+    }
+
+    .reservas p {
+      color: var(--gris-texto);
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Placeholder Cal.com embed */
+    .cal-placeholder {
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px dashed #444;
+      border-radius: 4px;
+      padding: 3rem 2rem;
+      color: var(--gris-texto);
+      font-family: sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .cal-placeholder code {
+      display: block;
+      margin-top: 0.8rem;
+      color: var(--dorado);
+      font-size: 0.8rem;
+      word-break: break-all;
+    }
+
+    /* Cuando se añada el embed real, quitar .cal-placeholder y usar esto */
+    .cal-embed {
+      max-width: 700px;
+      margin: 0 auto;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* SECCIÓN UBICACIÓN */
+    .ubicacion {
+      padding: 5rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .ubicacion h2 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    .ubicacion p {
+      color: var(--gris-texto);
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .direccion-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--gris-medio);
+      padding: 1rem 2rem;
+      border-left: 3px solid var(--dorado);
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      color: var(--blanco);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #080808;
+      text-align: center;
+      padding: 2rem;
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .servicio-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .servicio-precio {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-badge">Barbería a domicilio · Pontevedra</p>
+    <h1>Hernán<br><span>Vincench</span></h1>
+    <p class="hero-sub">Cortes clásicos con precisión, en la comodidad de tu barrio. Reserva tu cita en segundos.</p>
+    <a href="#reservas" class="btn-reservar">Reservar cita</a>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios">
+    <p class="seccion-label">Lo que ofrezco</p>
+    <h2>Servicios</h2>
+
+    <div class="servicio-item">
+      <div>
+        <div class="servicio-nombre">Corte clásico</div>
+        <div class="servicio-desc">Tijera y/o máquina, acabado limpio y profesional</div>
+      </div>
+      <div class="servicio-precio">10 $</div>
+    </div>
+
+  </section>
+
+  <!-- RESERVAS -->
+  <section class="reservas" id="reservas">
+    <p class="seccion-label">Agenda tu turno</p>
+    <h2>Reserva tu cita</h2>
+    <p>Elige el día y la hora que mejor te venga. Recibirás confirmación por email al instante.</p>
+
+    <div class="cal-embed">
+      <iframe
+        src="https://cal.com/hernan.vincench/corte-pelo?embed=true"
+        width="100%"
+        height="600"
+        frameborder="0"
+      ></iframe>
+    </div>
+
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="ubicacion">
+    <p class="seccion-label">Dónde estoy</p>
+    <h2>Ubicación</h2>
+    <p>Trabajo desde casa. Te espero en:</p>
+    <div class="direccion-box">
+      📍 EST.Pxeiros-Mos 13, 36417 · Pontevedra
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Hernán Vincench · Barbería en casa · Pontevedra</p>
+  </footer>
+
+</body>
+</html>
