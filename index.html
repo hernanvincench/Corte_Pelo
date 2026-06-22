@@ -12,8 +12,8 @@
       --negro: #0a0a0a;
       --gris: #141414;
       --gris2: #1e1e1e;
-      --verde: #00e676;
-      --verde-oscuro: #00c160;
+      --azul: #00b8d4;
+      --azul-oscuro: #0095a8;
       --blanco: #f0f0f0;
       --gris-texto: #888;
     }
@@ -45,10 +45,10 @@
       color: var(--blanco);
     }
 
-    .nav-logo span { color: var(--verde); }
+    .nav-logo span { color: var(--azul); }
 
     .nav-cta {
-      background: var(--verde);
+      background: var(--azul);
       color: var(--negro);
       text-decoration: none;
       font-weight: 700;
@@ -59,7 +59,7 @@
       transition: background 0.2s;
     }
 
-    .nav-cta:hover { background: var(--verde-oscuro); }
+    .nav-cta:hover { background: var(--azul-oscuro); }
 
     /* HERO */
     .hero {
@@ -88,7 +88,7 @@
 
     .hero-tag {
       display: inline-block;
-      background: var(--verde);
+      background: var(--azul);
       color: var(--negro);
       font-size: 0.7rem;
       font-weight: 700;
@@ -107,7 +107,7 @@
       color: var(--blanco);
     }
 
-    .hero h1 .verde { color: var(--verde); }
+    .hero h1 .azul { color: var(--azul); }
 
     .hero-sub {
       margin-top: 1.8rem;
@@ -125,7 +125,7 @@
     }
 
     .btn-primary {
-      background: var(--verde);
+      background: var(--azul);
       color: var(--negro);
       text-decoration: none;
       font-weight: 700;
@@ -136,7 +136,7 @@
       transition: background 0.2s;
     }
 
-    .btn-primary:hover { background: var(--verde-oscuro); }
+    .btn-primary:hover { background: var(--azul-oscuro); }
 
     .btn-secondary {
       background: transparent;
@@ -151,11 +151,11 @@
       transition: border-color 0.2s;
     }
 
-    .btn-secondary:hover { border-color: var(--verde); color: var(--verde); }
+    .btn-secondary:hover { border-color: var(--azul); color: var(--azul); }
 
     /* STRIP */
     .strip {
-      background: var(--verde);
+      background: var(--azul);
       padding: 0.8rem 0;
       overflow: hidden;
       white-space: nowrap;
@@ -196,7 +196,7 @@
     .section-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 4rem;
-      color: var(--verde);
+      color: var(--azul);
       line-height: 1;
       opacity: 0.4;
     }
@@ -213,7 +213,7 @@
       align-items: center;
       padding: 2rem;
       background: var(--gris);
-      border-left: 3px solid var(--verde);
+      border-left: 3px solid var(--azul);
       margin-bottom: 1rem;
       transition: background 0.2s;
     }
@@ -236,7 +236,7 @@
     .servicio-precio {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 2.2rem;
-      color: var(--verde);
+      color: var(--azul);
       white-space: nowrap;
       margin-left: 2rem;
     }
@@ -264,6 +264,112 @@
       margin: 0 auto;
     }
 
+    /* LISTA DE ESPERA */
+    .espera {
+      padding: 6rem 2.5rem;
+      background: var(--negro);
+    }
+
+    .espera-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .espera-sub {
+      color: var(--gris-texto);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .espera-form {
+      background: var(--gris);
+      border-left: 3px solid var(--azul);
+      padding: 2rem;
+      max-width: 520px;
+    }
+
+    .espera-form label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gris-texto);
+      margin-bottom: 0.4rem;
+      margin-top: 1.2rem;
+    }
+
+    .espera-form label:first-child { margin-top: 0; }
+
+    .espera-form input[type="text"],
+    .espera-form input[type="email"],
+    .espera-form input[type="date"] {
+      width: 100%;
+      background: var(--negro);
+      border: 1px solid #333;
+      color: var(--blanco);
+      padding: 0.75rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .espera-form input:focus { border-color: var(--azul); }
+
+    .espera-form .check-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+
+    .espera-form input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--azul);
+      flex-shrink: 0;
+    }
+
+    .espera-form .check-label {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .espera-form .btn-espera {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--azul);
+      color: var(--negro);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .espera-form .btn-espera:hover { background: var(--azul-oscuro); }
+
+    .espera-msg {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .espera-msg.ok { color: var(--azul); display: block; }
+    .espera-msg.error { color: #ff5252; display: block; }
+
     /* UBICACIÓN */
     .ubicacion {
       padding: 6rem 2.5rem;
@@ -277,7 +383,7 @@
       gap: 1.5rem;
       background: var(--gris);
       padding: 2rem;
-      border-left: 3px solid var(--verde);
+      border-left: 3px solid var(--azul);
       margin-top: 2rem;
     }
 
@@ -323,7 +429,7 @@
     @media (max-width: 600px) {
       nav { padding: 1rem 1.2rem; }
       .hero { padding: 7rem 1.2rem 3rem; }
-      .servicios, .ubicacion { padding: 4rem 1.2rem; }
+      .servicios, .ubicacion, .espera { padding: 4rem 1.2rem; }
       .reservas { padding: 4rem 1.2rem; }
       .servicio-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
       .servicio-precio { margin-left: 0; }
@@ -343,8 +449,8 @@
   <section class="hero">
     <div class="hero-bg-text">BARBER</div>
     <div class="hero-tag">Barbero · Pontevedra</div>
-    <h1>HERNÁN<br><span class="verde">VINCENCH</span></h1>
-    <p class="hero-sub">Cortes a domicilio con acabado profesional. Sin esperas, sin complicaciones. Reserva tu hueco en segundos.</p>
+    <h1>HERNÁN<br><span class="azul">VINCENCH</span></h1>
+    <p class="hero-sub">Barbería con acabado profesional en Pontevedra. Elige tu servicio, reserva online y ven a tu hora. Tu hueco, en segundos.</p>
     <div class="hero-btns">
       <a href="#reservas" class="btn-primary">Pide tu cita</a>
       <a href="#servicios" class="btn-secondary">Ver servicios</a>
@@ -354,21 +460,21 @@
   <!-- STRIP ANIMADO -->
   <div class="strip">
     <div class="strip-inner">
-      <span>CORTE A DOMICILIO</span>
+      <span>BARBERÍA</span>
       <span>✂</span>
       <span>PONTEVEDRA</span>
       <span>✂</span>
       <span>RESERVA ONLINE</span>
       <span>✂</span>
-      <span>SIN ESPERAS</span>
+      <span>CORTE & BARBA</span>
       <span>✂</span>
-      <span>CORTE A DOMICILIO</span>
+      <span>BARBERÍA</span>
       <span>✂</span>
       <span>PONTEVEDRA</span>
       <span>✂</span>
       <span>RESERVA ONLINE</span>
       <span>✂</span>
-      <span>SIN ESPERAS</span>
+      <span>CORTE & BARBA</span>
       <span>✂</span>
     </div>
   </div>
@@ -382,10 +488,26 @@
 
     <div class="servicio-card">
       <div>
-        <div class="servicio-nombre">Corte clásico</div>
-        <div class="servicio-desc">Degradados, perfilado, tijera y máquina — el corte que te pidas, con acabado limpio</div>
+        <div class="servicio-nombre">Corte de pelo</div>
+        <div class="servicio-desc">Corte de pelo degradado, con tijera y máquina</div>
       </div>
-      <div class="servicio-precio">10€</div>
+      <div class="servicio-precio">12€</div>
+    </div>
+
+    <div class="servicio-card">
+      <div>
+        <div class="servicio-nombre">Pelo y barba</div>
+        <div class="servicio-desc">Corte de pelo, degradar y arreglar y marcar barba</div>
+      </div>
+      <div class="servicio-precio">15€</div>
+    </div>
+
+    <div class="servicio-card">
+      <div>
+        <div class="servicio-nombre">Pelo y quitar barba</div>
+        <div class="servicio-desc">Corte de pelo y barba rasurada al cero</div>
+      </div>
+      <div class="servicio-precio">13€</div>
     </div>
 
   </section>
@@ -400,6 +522,11 @@
       <p class="sub">Elige el día y la hora. Confirmación por email al instante.</p>
 
       <div id="cal-embed"></div>
+      <!--
+        Un único event type para los 3 servicios. El cliente elige el servicio
+        en un desplegable dentro del formulario de Cal.com.
+        Ajusta el slug de abajo (calLink) al de tu event type, ej. "hernan.vincench/cita".
+      -->
       <script type="text/javascript">
         (function (C, A, L) {
           let p = function (a, ar) { a.q.push(ar); };
@@ -414,7 +541,7 @@
         Cal("init", { origin: "https://cal.com" });
         Cal("inline", {
           elementOrSelector: "#cal-embed",
-          calLink: "hernan.vincench/corte-pelo",
+          calLink: "hernan.vincench/reservar-cita",
           layout: "month_view"
         });
         Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
@@ -422,10 +549,78 @@
     </div>
   </section>
 
+  <!-- LISTA DE ESPERA -->
+  <section class="espera" id="espera">
+    <div class="espera-inner">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div class="section-title">¿SIN HUECO?</div>
+      </div>
+      <p class="espera-sub">Si no encuentras hora disponible, déjame tu nombre y contacto. Te aviso si se libera un hueco o si abro un día extra.</p>
+      <form class="espera-form" id="form-espera">
+        <label for="esp-nombre">Nombre</label>
+        <input type="text" id="esp-nombre" name="nombre" placeholder="Tu nombre" required>
+
+        <label for="esp-email">Email</label>
+        <input type="email" id="esp-email" name="email" placeholder="tu@email.com" required>
+
+        <label for="esp-fecha">¿Qué jueves te interesa?</label>
+        <input type="date" id="esp-fecha" name="fecha" required>
+
+        <div class="check-row">
+          <input type="checkbox" id="esp-sabado" name="sabado" value="si">
+          <label class="check-label" for="esp-sabado">También me interesa si Hernán abre el sábado</label>
+        </div>
+
+        <button type="submit" class="btn-espera">Apuntarme a la lista</button>
+        <p class="espera-msg" id="espera-msg"></p>
+      </form>
+
+      <script>
+        document.getElementById('form-espera').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = this.querySelector('.btn-espera');
+          const msg = document.getElementById('espera-msg');
+          btn.disabled = true;
+          btn.textContent = 'Enviando...';
+          msg.className = 'espera-msg';
+
+          const data = {
+            nombre: this.nombre.value,
+            email: this.email.value,
+            fecha: this.fecha.value,
+            sabado: this.sabado.checked ? 'si' : 'no'
+          };
+
+          try {
+            const res = await fetch('https://n8n.adiantai.es/webhook/lista-espera-hernan', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            if (res.ok) {
+              msg.textContent = '✓ Apuntado correctamente. Te avisamos en cuanto haya hueco.';
+              msg.className = 'espera-msg ok';
+              this.reset();
+            } else {
+              throw new Error();
+            }
+          } catch {
+            msg.textContent = 'Error al enviar. Inténtalo de nuevo.';
+            msg.className = 'espera-msg error';
+          } finally {
+            btn.disabled = false;
+            btn.textContent = 'Apuntarme a la lista';
+          }
+        });
+      </script>
+    </div>
+  </section>
+
   <!-- UBICACIÓN -->
   <section class="ubicacion">
     <div class="section-header">
-      <div class="section-num">03</div>
+      <div class="section-num">04</div>
       <div class="section-title">DÓNDE ESTOY</div>
     </div>
 
