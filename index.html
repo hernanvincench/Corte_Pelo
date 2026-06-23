@@ -682,7 +682,12 @@
               body: JSON.stringify(data)
             });
             if (res.ok) {
-              msg.textContent = '✓ Apuntado correctamente. Te avisamos en cuanto haya hueco.';
+              let mensaje = 'Apuntado correctamente. Te avisamos en cuanto haya hueco.';
+              try {
+                const json = await res.json();
+                if (json && json.mensaje) mensaje = json.mensaje;
+              } catch {}
+              msg.textContent = '✓ ' + mensaje;
               msg.className = 'espera-msg ok';
               this.reset();
               document.querySelectorAll('.jueves-btn').forEach(b => b.classList.remove('selected'));
