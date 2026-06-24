@@ -3,619 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hernán Vincench — Barbero · Pontevedra</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Hernán Vincench — Barbería · Mos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --negro: #0a0a0a;
-      --gris: #141414;
-      --gris2: #1e1e1e;
-      --azul: #00b8d4;
-      --azul-oscuro: #0095a8;
-      --blanco: #f0f0f0;
-      --gris-texto: #888;
+      --base: #0c1626; --base-2: #131f37; --base-3: #1a2b49; --tinta: #060e1c;
+      --texto: #e4ecf7; --texto-2: #8493ad; --azul: #3a6df2; --azul-2: #74a0ff; --verde: #36d399; --linea: #213150;
     }
+    html { scroll-behavior: smooth; }
+    body { background: var(--base); color: var(--texto); font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--azul-2); outline-offset: 3px; }
+    .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--azul-2); }
+    nav { position: fixed; inset: 0 0 auto 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: color-mix(in srgb, var(--base) 86%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--linea); }
+    .brand { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; }
+    .brand span { color: var(--azul-2); }
+    .nav-cta { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #fff; background: var(--azul); padding: 0.65rem 1.4rem; border-radius: 100px; transition: background 0.2s, transform 0.2s; }
+    .nav-cta:hover { background: var(--azul-2); transform: translateY(-1px); }
 
-    body {
-      background: var(--negro);
-      color: var(--blanco);
-      font-family: 'Inter', sans-serif;
+    /* HERO limpio, sin barra lateral */
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 9rem 2rem 5rem; max-width: 1080px; margin: 0 auto; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(440px circle at var(--mx, 72%) var(--my, 32%), rgba(58,109,242,0.30), transparent 60%); pointer-events: none; z-index: 0; transition: background 0.12s ease-out; }
+    .hero > * { position: relative; z-index: 1; opacity: 0; animation: rise 0.75s cubic-bezier(0.2,0.7,0.2,1) forwards; }
+    .hero > .chip { animation-delay: 0.05s; }
+    .hero > .eyebrow { animation-delay: 0.15s; }
+    .hero > h1 { animation-delay: 0.25s; }
+    .hero > .hero-sub { animation-delay: 0.4s; }
+    .hero > .hero-btns { animation-delay: 0.55s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    @keyframes shimmer { to { background-position: 200% center; } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(54,211,153,0.5); } 70% { box-shadow: 0 0 0 7px rgba(54,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(54,211,153,0); } }
+    .chip { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--texto-2); border: 1px solid var(--linea); border-radius: 100px; padding: 0.4rem 0.95rem; margin-bottom: 1.4rem; width: fit-content; }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 8px var(--verde); animation: pulse 1.8s ease-in-out infinite; }
+    .hero h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(3.8rem, 13vw, 8.5rem); line-height: 0.88; letter-spacing: -0.04em; }
+    .hero h1 span { background: linear-gradient(100deg, var(--azul-2) 8%, #c2d4ff 28%, var(--azul) 52%, var(--azul-2) 78%); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: shimmer 5s linear infinite; }
+    .hero-sub { margin-top: 1.7rem; max-width: 33rem; color: var(--texto-2); font-size: 1.1rem; }
+    .hero-btns { display: flex; gap: 0.9rem; margin-top: 2.4rem; flex-wrap: wrap; }
+    .btn { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 1rem 2rem; border-radius: 100px; transition: all 0.2s; }
+    .btn-fill { background: var(--azul); color: #fff; }
+    .btn-fill:hover { background: var(--azul-2); transform: translateY(-1px); }
+    .btn-ghost { border: 1.5px solid var(--linea); color: var(--texto); }
+    .btn-ghost:hover { border-color: var(--azul); color: var(--azul-2); }
+
+    .marquee { border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); background: var(--tinta); overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-flex; gap: 2.5rem; padding: 0.8rem 0; animation: slide 22s linear infinite; }
+    .marquee span { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--texto-2); text-transform: uppercase; letter-spacing: 0.05em; }
+    .marquee span.dot { color: var(--azul-2); }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    section.block { padding: 6.5rem 0; }
+    .head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 3rem; }
+    .head .num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--azul-2); border: 1px solid var(--azul); border-radius: 5px; width: 2.4rem; height: 2.4rem; display: grid; place-items: center; flex-shrink: 0; }
+    .head h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(2rem, 5.5vw, 3.2rem); line-height: 1; letter-spacing: -0.03em; }
+    .head .sub { color: var(--texto-2); font-size: 0.95rem; margin-top: 0.3rem; }
+
+    .carta-item { display: flex; align-items: baseline; gap: 0.75rem; padding: 1.6rem 0; border-bottom: 1px solid var(--linea); }
+    .carta-item:first-child { border-top: 1px solid var(--linea); }
+    .carta-nombre { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.55rem; line-height: 1.05; letter-spacing: -0.02em; }
+    .carta-desc { color: var(--texto-2); font-size: 0.88rem; margin-top: 0.2rem; }
+    .carta-dots { flex: 1; border-bottom: 2px dotted var(--linea); transform: translateY(-0.35em); min-width: 2rem; }
+    .carta-precio { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 2rem; color: var(--azul-2); white-space: nowrap; letter-spacing: -0.02em; }
+
+    .reservas { background: var(--base-2); }
+    /* Contenedor del Cal con tapado del watermark inferior */
+    .cal-wrap { max-width: 820px; margin: 0 auto; }
+    #cal-embed { background: #fff; border-radius: 12px; overflow: hidden; min-height: 200px; }
+    #cal-embed iframe { display: block; margin-bottom: -72px; }
+
+    /* Sección centrada (¿Sin hueco?) */
+    .centered .head { justify-content: center; }
+    .centered .head > div { text-align: center; }
+    .centered .espera-sub { margin-left: auto; margin-right: auto; text-align: center; }
+    .centered .form-card { margin: 0 auto; }
+
+    .espera-sub { color: var(--texto-2); max-width: 36rem; margin-bottom: 2.4rem; }
+    .form-card { background: var(--base-2); border: 1px solid var(--linea); border-radius: 12px; padding: 2rem; max-width: 560px; text-align: left; }
+    .form-card label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto-2); margin: 1.4rem 0 0.5rem; }
+    .form-card label:first-of-type { margin-top: 0; }
+    .form-card input[type="text"], .form-card input[type="email"] { width: 100%; background: var(--tinta); border: 1px solid var(--linea); color: var(--texto); padding: 0.85rem 1rem; border-radius: 8px; font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s; }
+    .form-card input::placeholder { color: #5e6f8c; }
+    .form-card input:focus { outline: none; border-color: var(--azul); }
+    .jueves-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.2rem; }
+    .jueves-btn { background: var(--tinta); border: 1px solid var(--linea); color: var(--texto); padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.85rem; line-height: 1.25; text-align: center; transition: all 0.15s; }
+    .jueves-btn strong { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; }
+    .jueves-btn:hover { border-color: var(--azul); }
+    .jueves-btn.selected { background: var(--azul); border-color: var(--azul); color: #fff; }
+    .jueves-hint { font-size: 0.78rem; color: var(--azul-2); margin-top: 0.5rem; font-weight: 600; }
+    .check-row { display: flex; align-items: flex-start; gap: 0.7rem; margin-top: 1.4rem; text-align: left; }
+    .check-row input { width: 18px; height: 18px; accent-color: var(--azul); flex-shrink: 0; margin-top: 2px; }
+    .check-row label { margin: 0; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 0.9rem; color: var(--texto); }
+    .btn-espera { width: 100%; margin-top: 1.7rem; background: var(--azul); color: #fff; border: none; border-radius: 100px; padding: 1rem; cursor: pointer; font-family: inherit; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; }
+    .btn-espera:hover { background: var(--azul-2); }
+    .btn-espera:disabled { opacity: 0.6; cursor: default; }
+    .espera-msg { margin-top: 1rem; font-size: 0.88rem; display: none; }
+    .espera-msg.ok { color: var(--azul-2); display: block; font-weight: 600; }
+    .espera-msg.error { color: #ff8a8a; display: block; }
+
+    .ubi-box { display: flex; align-items: center; gap: 1.3rem; background: var(--base-2); border: 1px solid var(--linea); border-left: 4px solid var(--azul); border-radius: 12px; padding: 1.8rem; }
+    .ubi-box .pin { font-size: 1.6rem; }
+    .ubi-box strong { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.05rem; display: block; }
+    .ubi-box span { color: var(--texto-2); font-size: 0.88rem; }
+    footer { border-top: 1px solid var(--linea); background: var(--tinta); padding: 2.2rem 0; font-size: 0.82rem; color: var(--texto-2); }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-row .fb { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; color: var(--texto); font-size: 1rem; }
+
+    @media (max-width: 720px) {
+      body { font-size: 16px; }
+      .wrap, .hero { padding-left: 1.4rem; padding-right: 1.4rem; }
+      nav { padding: 0.9rem 1.4rem; }
+      .hero { padding-top: 7.5rem; padding-bottom: 4rem; }
+      section.block { padding: 4.5rem 0; }
+      .carta-item { flex-wrap: wrap; }
+      .carta-dots { display: none; }
+      .carta-precio { font-size: 1.7rem; }
+      .footer-row { flex-direction: column; text-align: center; }
     }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2.5rem;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #1e1e1e;
-    }
-
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.1em;
-      color: var(--blanco);
-    }
-
-    .nav-logo span { color: var(--azul); }
-
-    .nav-cta {
-      background: var(--azul);
-      color: var(--negro);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.6rem 1.4rem;
-      transition: background 0.2s;
-    }
-
-    .nav-cta:hover { background: var(--azul-oscuro); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2.5rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-text {
-      position: absolute;
-      top: 50%;
-      right: -2rem;
-      transform: translateY(-50%);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(8rem, 20vw, 18rem);
-      color: #fff;
-      opacity: 0.03;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: var(--azul);
-      color: var(--negro);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      margin-bottom: 2rem;
-      width: fit-content;
-    }
-
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 12vw, 10rem);
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      color: var(--blanco);
-    }
-
-    .hero h1 .azul { color: var(--azul); }
-
-    .hero-sub {
-      margin-top: 1.8rem;
-      font-size: 1rem;
-      color: var(--gris-texto);
-      max-width: 420px;
-      line-height: 1.7;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--azul);
-      color: var(--negro);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 1rem 2rem;
-      transition: background 0.2s;
-    }
-
-    .btn-primary:hover { background: var(--azul-oscuro); }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 1rem 2rem;
-      border: 1px solid #333;
-      transition: border-color 0.2s;
-    }
-
-    .btn-secondary:hover { border-color: var(--azul); color: var(--azul); }
-
-    /* STRIP */
-    .strip {
-      background: var(--azul);
-      padding: 0.8rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .strip-inner {
-      display: inline-flex;
-      gap: 3rem;
-      animation: scroll 18s linear infinite;
-    }
-
-    .strip span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      color: var(--negro);
-      letter-spacing: 0.15em;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* SERVICIOS */
-    .servicios {
-      padding: 6rem 2.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-
-    .section-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 4rem;
-      color: var(--azul);
-      line-height: 1;
-      opacity: 0.4;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      letter-spacing: 0.05em;
-    }
-
-    .servicio-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem;
-      background: var(--gris);
-      border-left: 3px solid var(--azul);
-      margin-bottom: 1rem;
-      transition: background 0.2s;
-    }
-
-    .servicio-card:hover { background: var(--gris2); }
-
-    .servicio-nombre {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.05em;
-      color: var(--blanco);
-    }
-
-    .servicio-desc {
-      font-size: 0.85rem;
-      color: var(--gris-texto);
-      margin-top: 0.3rem;
-    }
-
-    .servicio-precio {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.2rem;
-      color: var(--azul);
-      white-space: nowrap;
-      margin-left: 2rem;
-    }
-
-    /* RESERVAS */
-    .reservas {
-      background: var(--gris);
-      padding: 6rem 2.5rem;
-    }
-
-    .reservas-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .reservas p.sub {
-      color: var(--gris-texto);
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-      margin-bottom: 3rem;
-    }
-
-    #cal-embed {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* LISTA DE ESPERA */
-    .espera {
-      padding: 6rem 2.5rem;
-      background: var(--negro);
-    }
-
-    .espera-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .espera-sub {
-      color: var(--gris-texto);
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-      margin-bottom: 2.5rem;
-      max-width: 520px;
-      line-height: 1.7;
-    }
-
-    .espera-form {
-      background: var(--gris);
-      border-left: 3px solid var(--azul);
-      padding: 2rem;
-      max-width: 520px;
-    }
-
-    .espera-form label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gris-texto);
-      margin-bottom: 0.4rem;
-      margin-top: 1.2rem;
-    }
-
-    .espera-form label:first-child { margin-top: 0; }
-
-    .espera-form input[type="text"],
-    .espera-form input[type="email"],
-    .espera-form input[type="date"] {
-      width: 100%;
-      background: var(--negro);
-      border: 1px solid #333;
-      color: var(--blanco);
-      padding: 0.75rem 1rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .espera-form input:focus { border-color: var(--azul); }
-
-    .espera-form .check-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 1.2rem;
-    }
-
-    .espera-form input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--azul);
-      flex-shrink: 0;
-    }
-
-    .espera-form .check-label {
-      font-size: 0.85rem;
-      color: var(--gris-texto);
-      text-transform: none;
-      letter-spacing: 0;
-      font-weight: 400;
-      margin: 0;
-    }
-
-    .espera-form .btn-espera {
-      display: inline-block;
-      margin-top: 1.5rem;
-      background: var(--azul);
-      color: var(--negro);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.9rem 2rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-      width: 100%;
-    }
-
-    .espera-form .btn-espera:hover { background: var(--azul-oscuro); }
-
-    .jueves-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.4rem;
-    }
-
-    .jueves-btn {
-      background: var(--negro);
-      border: 1px solid #333;
-      color: var(--blanco);
-      padding: 0.65rem 1.1rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s, color 0.15s;
-      white-space: nowrap;
-      line-height: 1.3;
-      text-align: center;
-    }
-
-    .jueves-btn:hover { border-color: var(--azul); color: var(--azul); }
-
-    .jueves-btn.selected {
-      background: var(--azul);
-      border-color: var(--azul);
-      color: var(--negro);
-      font-weight: 700;
-    }
-
-    .jueves-hint {
-      font-size: 0.78rem;
-      color: var(--gris-texto);
-      margin-top: 0.4rem;
-    }
-
-    .espera-msg {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      display: none;
-    }
-
-    .espera-msg.ok { color: var(--azul); display: block; }
-    .espera-msg.error { color: #ff5252; display: block; }
-
-    /* UBICACIÓN */
-    .ubicacion {
-      padding: 6rem 2.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .ubicacion-box {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      background: var(--gris);
-      padding: 2rem;
-      border-left: 3px solid var(--azul);
-      margin-top: 2rem;
-    }
-
-    .ubicacion-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-    }
-
-    .ubicacion-texto strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--blanco);
-      margin-bottom: 0.2rem;
-    }
-
-    .ubicacion-texto span {
-      font-size: 0.85rem;
-      color: var(--gris-texto);
-    }
-
-    /* FOOTER */
-    footer {
-      background: #050505;
-      border-top: 1px solid #1a1a1a;
-      padding: 2rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: #444;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      color: #333;
-      letter-spacing: 0.1em;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      nav { padding: 1rem 1.2rem; }
-      .hero { padding: 7rem 1.2rem 3rem; }
-      .servicios, .ubicacion, .espera { padding: 4rem 1.2rem; }
-      .reservas { padding: 4rem 1.2rem; }
-      .servicio-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-      .servicio-precio { margin-left: 0; }
-      footer { flex-direction: column; text-align: center; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .marquee-inner { animation: none; } .hero > * { opacity: 1; animation: none; } .hero h1 span { animation: none; background: none; -webkit-text-fill-color: var(--azul-2); color: var(--azul-2); } .chip .dot { animation: none; } .hero::before { transition: none; } }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav>
-    <div class="nav-logo">H<span>.</span>VINCENCH</div>
+    <div class="brand">VINCENCH<span>.</span></div>
     <a href="#reservas" class="nav-cta">Reservar</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg-text">BARBER</div>
-    <div class="hero-tag">Barbero · Pontevedra</div>
-    <h1>HERNÁN<br><span class="azul">VINCENCH</span></h1>
-    <p class="hero-sub">Barbería con acabado profesional en Pontevedra. Elige tu servicio, reserva online y ven a tu hora. Tu hueco, en segundos.</p>
+  <header class="hero">
+    <div class="chip"><span class="dot"></span> Agenda abierta · reserva tu hueco</div>
+    <span class="eyebrow">Barbería · Mos</span>
+    <h1>Hernán<br><span>Vincench</span></h1>
+    <p class="hero-sub">Elige tu servicio, reserva de forma sencilla y sin complicaciones.</p>
     <div class="hero-btns">
-      <a href="#reservas" class="btn-primary">Pide tu cita</a>
-      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      <a href="#reservas" class="btn btn-fill">Reserva tu corte</a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
     </div>
-  </section>
+  </header>
 
-  <!-- STRIP ANIMADO -->
-  <div class="strip">
-    <div class="strip-inner">
-      <span>BARBERÍA</span>
-      <span>✂</span>
-      <span>PONTEVEDRA</span>
-      <span>✂</span>
-      <span>RESERVA ONLINE</span>
-      <span>✂</span>
-      <span>CORTE & BARBA</span>
-      <span>✂</span>
-      <span>BARBERÍA</span>
-      <span>✂</span>
-      <span>PONTEVEDRA</span>
-      <span>✂</span>
-      <span>RESERVA ONLINE</span>
-      <span>✂</span>
-      <span>CORTE & BARBA</span>
-      <span>✂</span>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-inner">
+      <span>Corte &amp; Barba</span><span class="dot">✦</span><span>Mos</span><span class="dot">✦</span><span>Reserva online</span><span class="dot">✦</span><span>Sin esperas</span><span class="dot">✦</span>
+      <span>Corte &amp; Barba</span><span class="dot">✦</span><span>Mos</span><span class="dot">✦</span><span>Reserva online</span><span class="dot">✦</span><span>Sin esperas</span><span class="dot">✦</span>
     </div>
   </div>
 
-  <!-- SERVICIOS -->
-  <section class="servicios" id="servicios">
-    <div class="section-header">
-      <div class="section-num">01</div>
-      <div class="section-title">SERVICIOS</div>
+  <section class="block" id="servicios">
+    <div class="wrap">
+      <div class="head"><div><h2>Servicios</h2></div></div>
+      <div class="carta-item"><div><div class="carta-nombre">Corte de pelo</div><div class="carta-desc">Degradado a tu gusto, con tijera y máquina.</div></div><div class="carta-dots" aria-hidden="true"></div><div class="carta-precio">12€</div></div>
+      <div class="carta-item"><div><div class="carta-nombre">Pelo y quitar barba</div><div class="carta-desc">Corte completo y barba al cero, bien apurada.</div></div><div class="carta-dots" aria-hidden="true"></div><div class="carta-precio">13€</div></div>
+      <div class="carta-item"><div><div class="carta-nombre">Pelo y barba</div><div class="carta-desc">Corte, degradado y barba arreglada y marcada.</div></div><div class="carta-dots" aria-hidden="true"></div><div class="carta-precio">15€</div></div>
     </div>
-
-    <div class="servicio-card">
-      <div>
-        <div class="servicio-nombre">Corte de pelo</div>
-        <div class="servicio-desc">Corte de pelo degradado, con tijera y máquina</div>
-      </div>
-      <div class="servicio-precio">12€</div>
-    </div>
-
-    <div class="servicio-card">
-      <div>
-        <div class="servicio-nombre">Pelo y barba</div>
-        <div class="servicio-desc">Corte de pelo, degradar y arreglar y marcar barba</div>
-      </div>
-      <div class="servicio-precio">15€</div>
-    </div>
-
-    <div class="servicio-card">
-      <div>
-        <div class="servicio-nombre">Pelo y quitar barba</div>
-        <div class="servicio-desc">Corte de pelo y barba rasurada al cero</div>
-      </div>
-      <div class="servicio-precio">13€</div>
-    </div>
-
   </section>
 
-  <!-- RESERVAS -->
-  <section class="reservas" id="reservas">
-    <div class="reservas-inner">
-      <div class="section-header">
-        <div class="section-num">02</div>
-        <div class="section-title">RESERVA TU CITA</div>
-      </div>
-      <p class="sub">Elige el día y la hora. Confirmación por email al instante.</p>
-
-      <div id="cal-embed"></div>
-      <!--
-        Un único event type para los 3 servicios. El cliente elige el servicio
-        en un desplegable dentro del formulario de Cal.com.
-        Ajusta el slug de abajo (calLink) al de tu event type, ej. "hernan.vincench/cita".
-      -->
+  <section class="block reservas" id="reservas">
+    <div class="wrap">
+      <div class="head"><div><h2>Reserva tu cita</h2><div class="sub">Elige día y hora. La confirmación te llega al email al momento.</div></div></div>
+      <div class="cal-wrap"><div id="cal-embed"></div></div>
       <script type="text/javascript">
-        (function (C, A, L) {
-          let p = function (a, ar) { a.q.push(ar); };
-          let d = C.document;
-          C.Cal = C.Cal || function () {
-            let cal = C.Cal; let ar = arguments;
-            if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
-            if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, [L, namespace, ar[2]]); } else p(cal, ar); return; }
-            p(cal, ar);
-          };
-        })(window, "https://app.cal.com/embed/embed.js", "init");
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, [L, namespace, ar[2]]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
         Cal("init", { origin: "https://cal.com" });
-        Cal("inline", {
-          elementOrSelector: "#cal-embed",
-          calLink: "hernan.vincench/reservar-cita",
-          layout: "month_view"
-        });
+        Cal("inline", { elementOrSelector: "#cal-embed", calLink: "hernan.vincench/reservar-cita", layout: "month_view" });
         Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
       </script>
     </div>
   </section>
 
-  <!-- LISTA DE ESPERA -->
-  <section class="espera" id="espera">
-    <div class="espera-inner">
-      <div class="section-header">
-        <div class="section-num">03</div>
-        <div class="section-title">¿SIN HUECO?</div>
-      </div>
-      <p class="espera-sub">Si no encuentras hora disponible, déjame tu nombre y contacto. Te aviso si se libera un hueco o si abro un día extra.</p>
-      <form class="espera-form" id="form-espera">
+  <section class="block centered" id="espera">
+    <div class="wrap">
+      <div class="head"><div><h2>¿Sin hueco?</h2><div class="sub">Te aviso en cuanto se libere algo.</div></div></div>
+      <p class="espera-sub">¿No queda hora? Déjame tu nombre y te aviso en cuanto se libere un hueco o abra un día extra. Sin compromiso.</p>
+      <form class="form-card" id="form-espera">
         <label for="esp-nombre">Nombre</label>
         <input type="text" id="esp-nombre" name="nombre" placeholder="Tu nombre" required>
-
         <label for="esp-email">Email</label>
         <input type="email" id="esp-email" name="email" placeholder="tu@email.com" required>
-
         <label>¿Qué jueves te interesan? (opcional si solo quieres el sábado)</label>
         <input type="hidden" id="esp-fecha" name="fecha">
         <div class="jueves-grid" id="jueves-grid"></div>
         <p class="jueves-hint" id="jueves-hint"></p>
-
         <div class="check-row">
           <input type="checkbox" id="esp-sabado" name="sabado" value="si">
           <label class="check-label" for="esp-sabado">También me interesa si Hernán abre el sábado</label>
         </div>
-
         <button type="submit" class="btn-espera">Apuntarme a la lista</button>
         <p class="espera-msg" id="espera-msg"></p>
       </form>
-
       <script>
-        // Genera botones de selección para los próximos jueves (ventana 21 días)
         (function() {
           const grid = document.getElementById('jueves-grid');
           const hint = document.getElementById('jueves-hint');
@@ -625,103 +201,54 @@
           while (d.getDay() !== 4) d.setDate(d.getDate() + 1);
           const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
           for (let i = 0; i < 3; i++) {
-            const yyyy = d.getFullYear();
-            const mm = String(d.getMonth()+1).padStart(2,'0');
-            const dd = String(d.getDate()).padStart(2,'0');
-            const valor = `${yyyy}-${mm}-${dd}`;
-            const label = `${d.getDate()} de ${meses[d.getMonth()]}`;
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'jueves-btn';
-            btn.dataset.valor = valor;
+            const yyyy = d.getFullYear(); const mm = String(d.getMonth()+1).padStart(2,'0'); const dd = String(d.getDate()).padStart(2,'0');
+            const valor = `${yyyy}-${mm}-${dd}`; const label = `${d.getDate()} de ${meses[d.getMonth()]}`;
+            const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'jueves-btn'; btn.dataset.valor = valor;
             btn.innerHTML = `<strong>Jueves</strong><br>${label}`;
-            btn.addEventListener('click', function() {
-              this.classList.toggle('selected');
-              const sel = Array.from(document.querySelectorAll('.jueves-btn.selected')).map(b => b.dataset.valor);
-              input.value = sel.join(',');
-              hint.textContent = sel.length ? `${sel.length} jueves seleccionado(s)` : '';
-            });
-            grid.appendChild(btn);
-            d.setDate(d.getDate()+7);
+            btn.addEventListener('click', function() { this.classList.toggle('selected'); const sel = Array.from(document.querySelectorAll('.jueves-btn.selected')).map(b => b.dataset.valor); input.value = sel.join(','); hint.textContent = sel.length ? `${sel.length} jueves seleccionado(s)` : ''; });
+            grid.appendChild(btn); d.setDate(d.getDate()+7);
           }
         })();
-
         document.getElementById('form-espera').addEventListener('submit', async function(e) {
           e.preventDefault();
-          const btn = this.querySelector('.btn-espera');
-          const msg = document.getElementById('espera-msg');
-          btn.disabled = true;
-          btn.textContent = 'Enviando...';
-          msg.className = 'espera-msg';
-
-          if (!this.fecha.value && !this.sabado.checked) {
-            msg.textContent = 'Elige al menos un jueves, o marca el sábado.';
-            msg.className = 'espera-msg error';
-            btn.disabled = false;
-            btn.textContent = 'Apuntarme a la lista';
-            return;
-          }
-
-          const data = {
-            nombre: this.nombre.value.trim(),
-            email: this.email.value.trim().toLowerCase(),
-            fecha: this.fecha.value,
-            sabado: this.sabado.checked ? 'si' : 'no'
-          };
-
+          const btn = this.querySelector('.btn-espera'); const msg = document.getElementById('espera-msg');
+          btn.disabled = true; btn.textContent = 'Enviando...'; msg.className = 'espera-msg';
+          if (!this.fecha.value && !this.sabado.checked) { msg.textContent = 'Elige al menos un jueves, o marca el sábado.'; msg.className = 'espera-msg error'; btn.disabled = false; btn.textContent = 'Apuntarme a la lista'; return; }
+          const data = { nombre: this.nombre.value.trim(), email: this.email.value.trim().toLowerCase(), fecha: this.fecha.value, sabado: this.sabado.checked ? 'si' : 'no' };
           try {
-            const res = await fetch('https://n8n.adiantai.es/webhook/lista-espera-hernan', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data)
-            });
+            const res = await fetch('https://n8n.adiantai.es/webhook/lista-espera-hernan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
             if (res.ok) {
               let mensaje = 'Apuntado correctamente. Te avisamos en cuanto haya hueco.';
-              try {
-                const json = await res.json();
-                if (json && json.mensaje) mensaje = json.mensaje;
-              } catch {}
-              msg.textContent = '✓ ' + mensaje;
-              msg.className = 'espera-msg ok';
-              this.reset();
-              document.querySelectorAll('.jueves-btn').forEach(b => b.classList.remove('selected'));
-              document.getElementById('jueves-hint').textContent = '';
-            } else {
-              throw new Error();
-            }
-          } catch {
-            msg.textContent = 'Error al enviar. Inténtalo de nuevo.';
-            msg.className = 'espera-msg error';
-          } finally {
-            btn.disabled = false;
-            btn.textContent = 'Apuntarme a la lista';
-          }
+              try { const json = await res.json(); if (json && json.mensaje) mensaje = json.mensaje; } catch {}
+              msg.textContent = '✓ ' + mensaje; msg.className = 'espera-msg ok'; this.reset();
+              document.querySelectorAll('.jueves-btn').forEach(b => b.classList.remove('selected')); document.getElementById('jueves-hint').textContent = '';
+            } else { throw new Error(); }
+          } catch { msg.textContent = 'Error al enviar. Inténtalo de nuevo.'; msg.className = 'espera-msg error'; }
+          finally { btn.disabled = false; btn.textContent = 'Apuntarme a la lista'; }
         });
       </script>
     </div>
   </section>
 
-  <!-- UBICACIÓN -->
-  <section class="ubicacion">
-    <div class="section-header">
-      <div class="section-num">04</div>
-      <div class="section-title">DÓNDE ESTOY</div>
-    </div>
-
-    <div class="ubicacion-box">
-      <div class="ubicacion-icon">📍</div>
-      <div class="ubicacion-texto">
-        <strong>EST. Puxeiros-Mos 13, 36417 · Pontevedra</strong>
-        <span>Trabajo desde casa — te indico los detalles al confirmar la cita</span>
-      </div>
+  <section class="block" id="ubicacion">
+    <div class="wrap">
+      <div class="head"><div><h2>Dónde estoy</h2></div></div>
+      <div class="ubi-box"><div class="pin" aria-hidden="true">📍</div><div><strong>EST. Puxeiros-Mos 13, 36417 · Mos</strong></div></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">H.VINCENCH</div>
-    <div>© 2026 Hernán Vincench · Barbero · Pontevedra</div>
-  </footer>
-
+  <footer><div class="wrap footer-row"><div class="fb">H. VINCENCH</div><div>© 2026 Hernán Vincench · Barbero · Mos</div></div></footer>
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(hover: none)').matches) return;
+      hero.addEventListener('pointermove', function (e) {
+        var r = hero.getBoundingClientRect();
+        hero.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        hero.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    })();
+  </script>
 </body>
 </html>
