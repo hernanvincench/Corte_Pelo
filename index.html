@@ -19,33 +19,40 @@
     a { color: inherit; }
     :focus-visible { outline: 2px solid var(--azul-2); outline-offset: 3px; }
 
-    /* ── BARBER POLE EN MOVIMIENTO ─────────────────────────────────── */
-    /* Rayas diagonales rojo+azul que se deslizan, igual que el poste pero en toda la pantalla */
-    .bg-motion {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image: repeating-linear-gradient(
-        112deg,
-        transparent        0px,
-        transparent        20px,
-        rgba(255,22,53,.07) 20px,
-        rgba(255,22,53,.07) 26px,
-        transparent        26px,
-        transparent        46px,
-        rgba(61,111,255,.07) 46px,
-        rgba(61,111,255,.07) 52px,
-        transparent        52px,
-        transparent        72px
-      );
-      background-size: 102px 102px;
-      animation: stripe-drift 8s linear infinite;
+    /* ── PARTÍCULAS FLOTANTES ──────────────────────────────────────── */
+    .bg-particles { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .p { position: absolute; border-radius: 50%; bottom: -25%; }
+
+    .p1 { width: 90px;  height: 90px;  left: 8%;  background: rgba(255,22,53,.2);   filter: blur(22px); animation: fa 13s ease-in-out -4s  infinite; }
+    .p2 { width: 55px;  height: 55px;  left: 28%; background: rgba(61,111,255,.22); filter: blur(14px); animation: fb 10s ease-in-out -8s  infinite; }
+    .p3 { width: 130px; height: 130px; left: 52%; background: rgba(255,85,112,.13); filter: blur(32px); animation: fa 17s ease-in-out -2s  infinite; }
+    .p4 { width: 42px;  height: 42px;  left: 74%; background: rgba(122,160,255,.24);filter: blur(10px); animation: fb 9s  ease-in-out -13s infinite; }
+    .p5 { width: 95px;  height: 95px;  left: 18%; background: rgba(61,111,255,.16); filter: blur(24px); animation: fc 15s ease-in-out -6s  infinite; }
+    .p6 { width: 65px;  height: 65px;  left: 86%; background: rgba(255,22,53,.16);  filter: blur(16px); animation: fa 11s ease-in-out -9s  infinite; }
+    .p7 { width: 38px;  height: 38px;  left: 43%; background: rgba(122,160,255,.28);filter: blur(9px);  animation: fb 8s  ease-in-out -3s  infinite; }
+    .p8 { width: 75px;  height: 75px;  left: 63%; background: rgba(255,22,53,.13);  filter: blur(19px); animation: fc 14s ease-in-out -11s infinite; }
+
+    @keyframes fa {
+      0%        { transform: translateY(0)      translateX(0);    opacity: 0; }
+      8%        { opacity: 1; }
+      92%       { opacity: .8; }
+      100%      { transform: translateY(-115vh) translateX(28px); opacity: 0; }
     }
-    @keyframes stripe-drift { to { background-position: 102px 0; } }
+    @keyframes fb {
+      0%        { transform: translateY(0)      translateX(0);    opacity: 0; }
+      8%        { opacity: 1; }
+      92%       { opacity: .8; }
+      100%      { transform: translateY(-115vh) translateX(-22px);opacity: 0; }
+    }
+    @keyframes fc {
+      0%        { transform: translateY(0)      translateX(0);    opacity: 0; }
+      8%        { opacity: 1; }
+      50%       { transform: translateY(-55vh)  translateX(18px); }
+      92%       { opacity: .8; }
+      100%      { transform: translateY(-115vh) translateX(-12px);opacity: 0; }
+    }
     /* ──────────────────────────────────────────────────────────────── */
 
-    /* Todo el contenido por encima del fondo */
     section, .rule, footer { position: relative; z-index: 2; }
 
     .frame { position: fixed; inset: 12px; border: 1px solid rgba(255,22,53,0.45); pointer-events: none; z-index: 90; }
@@ -135,15 +142,27 @@
       section.block { padding: 4rem 0; }
       .carta-item { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0.4rem 1rem; }
       .carta-dots { display: none; }
+      /* Menos partículas en móvil para no sobrecargar */
+      .p3, .p5, .p8 { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .pole, .bg-motion { animation: none; }
+      .pole { animation: none; }
+      .bg-particles { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="bg-motion" aria-hidden="true"></div>
+  <div class="bg-particles" aria-hidden="true">
+    <div class="p p1"></div>
+    <div class="p p2"></div>
+    <div class="p p3"></div>
+    <div class="p p4"></div>
+    <div class="p p5"></div>
+    <div class="p p6"></div>
+    <div class="p p7"></div>
+    <div class="p p8"></div>
+  </div>
 
   <div class="frame" aria-hidden="true"></div>
   <nav id="main-nav">
